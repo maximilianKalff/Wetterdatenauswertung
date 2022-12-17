@@ -1,0 +1,86 @@
+* {box-sizing:border-box}
+
+body{
+    margin:0;
+    font: 15px 'Open Sans',Verdana,Helvetica,sans-serif;
+    color: #464646;
+}
+
+h2 {
+    font: 28px 'Open Sans',Verdana,Helvetica,sans-serif;
+    color: #5a5a5a;
+    margin: 10px 0 10px 0;
+    line-height: 1.6;
+}
+
+/* ===HEADER=== */
+
+.header{
+    height: 3.9rem;
+    width: auto;
+    background-color: #ebebeb;
+    margin:15px;
+    overflow: auto;
+}
+
+.header img {
+    float: left;
+    width: auto;
+    height: auto;
+}
+
+.header p{
+    font: 30px 'Open Sans',Verdana,Helvetica,sans-serif;
+    color: #15264e;
+    margin: 1% 0 0 0;
+    text-align: center;
+}
+
+/* === Explain div ===*/
+.explain-div {
+    box-sizing: border-box;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.explain-content {
+    min-height: 1px;
+    margin: 0;
+    padding: 20px;
+    background: #ebebeb;
+    border-color: #efff00;
+    border-width: 0px;
+    border-style: solid;
+}
+
+.explain-content p {
+    margin: 10px 0 10px 0;
+    line-height: 1.6;
+}
+
+/*=== UPLOAD FILE ===*/
+.upload-div{
+    text-align:center;
+    padding:3%;
+    border:thin solid #1f497d;
+    color:#1f497d;
+}
+
+
+
+/* === CHARTS ===*/
+.app{
+    padding: 20px;
+}
+
+.chart-container {
+    overflow:visible;/*
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);*/
+    width: 40%;
+}

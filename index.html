@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/6eca73f0b8.js" crossorigin="anonymous"></script>
+    <title>Wetterdaten Auswertung</title>
+</head>
+<body>
+
+
+    <!-- === HEADER ===-->
+    <div class="header">
+        <img src="/src/logo.png" alt="Logo von Nawischool">
+        <p> Auswertung Wetterdaten</p>
+    </div>
+
+    <!-- === Wie funktioniert es? ===-->
+    <div class="explain-div">
+        <div class="explaint-title">
+            <h2>Wie funktioniert es?</h2>
+        </div>
+        <div class="explain-content">
+            <p>
+                Du hast erfolgreich Messungen durchgeführt? Dann ist es jetzt an der Zeit deine 
+                Messwerte auszuwerten. Drücke dafür ganz einfach auf den "Select File" Button, 
+                wähle deine Datei aus und bestätige deine Auswahl mit dem "Submit" Button. 
+                <br>
+                Jetzt kannst du die Werte für die x und die y Achse auswählen. 
+ 
+            </p>
+        </div>
+
+    </div>
+
+    <div class="app">
+        
+        <!-- Upload File (<i class="fa-solid fa-cloud-arrow-up fa-2xl upload-icon fa-beat"></i>)-->
+        <div class="upload-div">
+            <!-- https://www.youtube.com/watch?v=dvyvikylNmI Button change-->
+
+            <form id="myForm">
+                <input type="file" id="csvFile" accept=".csv" />
+                <br>
+                <br>
+                <label class="csvFileInput" for="csvFile">
+                    <i class="fa-solid fa-cloud-arrow-up fa-2xl upload-icon fa-beat"></i>
+                </label>
+                <br>
+                <br>
+                <input type="submit" value="Submit" />
+            </form>
+            
+            <p>Welche Daten sollen angezeigt werden?</p>
+            
+            <form>
+                <label for="x_axis_value">Wähle einen Wert für die x-Achse:</label>
+                <select id="x_axis_value" name="x_axis">
+                    <option value="no_selection">Keine Auswahl</option>
+                </select>
+            </form>
+
+            <form >
+                <label for="y_axis_value">Wähle einen Wert für die y-Achse:</label>
+                <select name="y_axis" id="y_axis_value">
+                    <option value="no_selection">Keine Auswahl</option>
+                </select>
+            </form>
+            
+        </div>
+
+        <div>
+            <div class="chart-container">                
+                <canvas id="chart" height="300"></canvas>
+            </div>
+         </div>
+        
+        
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1"></script>
+    <script src="app.js"></script>
+</body>
+</html>
+<!--
+    CHART: Achsen
+    Load: rechts
+    CHart links
+-->

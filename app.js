@@ -196,7 +196,7 @@ function createCharts(x_axis_value, y_axis_value){
     data:{
       labels: x_data,
       datasets:[{
-        label: (x_axis_value + " - " + y_axis_value),
+        //label: (x_axis_value + " - " + y_axis_value),
         backgroundColor: '#58508d',
         borderColor: '#58508d',        
         data: y_data,
@@ -208,11 +208,35 @@ function createCharts(x_axis_value, y_axis_value){
       beginAtZero: true,
       scales: {
         y: {
-          display: true,
-          text: y_axis_value,
-        },        
-      } 
-        
+          title: {
+            display: true,
+            align: 'center', 
+            text: y_axis_value,
+          }
+        },  
+        x: {
+          title: {
+            display: true,
+            align: 'center', 
+            text: x_axis_value,
+          },
+          ticks: {
+            callback: function(value, index, ticks) {
+              if (value % 50 == 0) {
+                return value;
+              }
+              
+            }
+            
+            
+          }
+        }      
+      }, 
+      plugins: {
+        legend: {
+          display: false,
+        }
+      }  
     }
   })
   

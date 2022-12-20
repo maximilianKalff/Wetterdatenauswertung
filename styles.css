@@ -84,3 +84,20 @@ h2 {
     transform: rotate(90deg);*/
     width: 40%;
 }
+
+/* === GRID === */
+.app {
+    width: 100%;
+    height: auto;
+}
+
+.upload-div {
+    width: 50%;
+    float: left;
+}
+
+.chart-container {
+    width: 40%;
+    float: right;
+    padding-right: 10%;
+}

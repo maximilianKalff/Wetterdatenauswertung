@@ -233,6 +233,12 @@ function createCharts(x_axis_value, y_axis_value){
             align: 'center', 
             text: y_axis_value,
           },
+          ticks: {
+            maxTicksLimit: 50,
+            callback: function(val, index) {
+              return index % 2 === 0 ? this.getLabelForValue(val) : '';
+            }
+          }
         },  
         x: {
           type: 'linear',

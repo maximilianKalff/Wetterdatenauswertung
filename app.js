@@ -148,16 +148,35 @@ y_axis_options.addEventListener("change", function(){
   }
 });
 
+// maximal sollen 1000 werte angezeigt werden!
+function getReducer(data_length){
+  let dl = data_length;
+  let reducer = 1;
+  let dl_max = 1000;
+  if (dl <= dl_max - 400) {
+    return 1;
+  }
+  else {
+    while (dl > dl_max) {
+      dl = dl / 2;
+      reducer = reducer * 2;
+    }
+    return reducer;
+  }
+}
+
 function getChartData(data){
   let x_axis = getX();
   let y_axis = getY();
   
   let x_data = [];
   let y_data = [];
+  let reducer = getReducer(data.length);
   let splitter = 0; //Verkürzen der Datenmenge
+  
   // !!!!!!!!!!!!!SPLITTER MUSS AUF DATENMENGE INDIVIDUELL ANGEPASST WERDEN!!!!!!!!!!!!
   for (let i = 0; i < (data.length -1); i++){
-    if (splitter == 15){
+    if (splitter == reducer){
       x_data.push(data[i][x_axis]);
       y_data.push(data[i][y_axis]);
       splitter = 0;
@@ -178,6 +197,7 @@ function destroyChart(){
 }
 
 function createCharts(x_axis_value, y_axis_value){
+  
   //allgemeiner Chart
   let chartData = getChartData(data);
   let x_data = chartData["x_axis"];
@@ -212,32 +232,38 @@ function createCharts(x_axis_value, y_axis_value){
             display: true,
             align: 'center', 
             text: y_axis_value,
-          }
+          },
         },  
         x: {
+          type: 'linear',
           title: {
             display: true,
             align: 'center', 
             text: x_axis_value,
           },
           ticks: {
-            callback: function(value, index, ticks) {
-              if (value % 50 == 0) {
-                return value;
-              }
-              
-            }
-            
-            
-          }
-        }      
+            autoSkip: true,
+            stepSize: 5,
+            maxTicksLimit: 50,
+            callback: function(val, index) {
+              return index % 4 === 0 ? this.getLabelForValue(val) : '';
+            }      
+          },
+          grid: {
+            lineWidth: function(val, index){
+              console.log(index);
+              return 1;
+            },
+          },
+        },   
+        
       }, 
       plugins: {
         legend: {
           display: false,
-        }
-      }  
-    }
+        },
+      },  
+    },
   })
   
 }

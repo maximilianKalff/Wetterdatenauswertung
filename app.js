@@ -238,7 +238,26 @@ function createCharts(x_axis_value, y_axis_value){
             callback: function(val, index) {
               return index % 2 === 0 ? this.getLabelForValue(val) : '';
             }
-          }
+          },
+          grid: {
+            lineWidth: function(val, index){
+              if (val.index % 2 == 0) {
+                return 1.5;
+              }
+              else {
+                return 1;
+              }
+              
+            },
+            color: function(val,index){
+              if (val.index % 2 == 0) {
+                return "#ababab";
+              }
+              else {
+                return "#e0e0e0";
+              }
+            },
+          },
         },  
         x: {
           type: 'linear',
@@ -257,8 +276,21 @@ function createCharts(x_axis_value, y_axis_value){
           },
           grid: {
             lineWidth: function(val, index){
-              console.log(index);
-              return 1;
+              if (val.index % 4 == 0) {
+                return 1.5;
+              }
+              else {
+                return 1;
+              }
+              
+            },
+            color: function(val,index){
+              if (val.index % 4 == 0) {
+                return "#ababab";
+              }
+              else {
+                return "#e0e0e0";
+              }
             },
           },
         },   

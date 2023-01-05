@@ -62,8 +62,19 @@ function createSelect(loc_attributes){
     else if (loc_attributes[i].includes("lng")){
       loc_attributes[i] = "Längengrad";
     }
-
-
+    else if (loc_attributes[i].includes("speed")){
+      loc_attributes[i] = "Geschwindigkeit";
+    }
+    else if (loc_attributes[i].includes("batteryVoltage")){
+      loc_attributes[i] = "Batteriespannung in Volt";
+    }
+    else if (loc_attributes[i].includes("satellites")){
+      loc_attributes[i] = "Anzahl der Satelliten";
+    }
+    else if (loc_attributes[i].includes("date")){
+      loc_attributes[i] = "Datum";
+    }
+    
     var opt_x = document.createElement('option');
     opt_x.value = loc_attributes[i]; // Den einzelnen Options werden Attribute zugewiesen
     opt_x.innerHTML = loc_attributes[i]; //dem Nutzer werden einzelne Attributsnamen angezeigt
@@ -97,8 +108,20 @@ myForm.addEventListener("submit", function (e) {
   const reader = new FileReader();
 
   reader.onload = function (e) {
-    const text = e.target.result;
-    data = csvToArray(text); //eingelesene Daten
+    let text = e.target.result;
+    //Check for Headlines
+      //of adalogger
+    if (text.includes("Name: AdaloggerV1, HW Version: 1.0, SW Version: 1.4, reduced Resolution by Tim Schumann")){
+      text = text.replace(/Name: AdaloggerV1, HW Version: 1\.0, SW Version: 1\.4, reduced Resolution by Tim Schumann/, '');
+      var lines = text.split('\n');
+      lines.splice(0,1);
+      text = lines.join('\n');
+      data = csvToArray(text); //eingelesene Daten
+    }
+    else {
+      data = csvToArray(text); //eingelesene Daten
+    }
+
     let attributes = Object.keys(data[1]); // Spaltennamen
     updated_att = createSelect(attributes);
     

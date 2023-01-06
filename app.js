@@ -63,7 +63,7 @@ function createSelect(loc_attributes){
       loc_attributes[i] = "Längengrad";
     }
     else if (loc_attributes[i].includes("speed")){
-      loc_attributes[i] = "Geschwindigkeit";
+      loc_attributes[i] = "Geschwindigkeit in m/s";
     }
     else if (loc_attributes[i].includes("batteryVoltage")){
       loc_attributes[i] = "Batteriespannung in Volt";

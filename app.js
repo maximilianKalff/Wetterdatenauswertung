@@ -36,45 +36,34 @@ function createSelect(loc_attributes){
   var select_x = document.getElementById('x_axis_value');
   var select_y = document.getElementById('y_axis_value');
   var att_length = loc_attributes.length;
+
+  var replacements = {
+    "#": "Index",
+    "CPU": "Zeit in Minuten",
+    "hh": "Uhrzeit",
+    "temp": "Temperatur in °C",
+    "alt":  "Höhe in m",
+    "pres": "Luftdruck in hPa",
+    "hum": "Leuchtfeuchtigkeit in %",
+    "lat": "Breitengrad",
+    "lng": "Längengrad",
+    "speed": "Geschwindigkeit",
+    "batteryVoltage": "Batteriespannung in Volt",
+    "satellites": "Anzahl der Satelliten",
+    "date": "Datum",
+    "x in m/s": "x in m/s^2",
+    "y in m/s": "y in m/s^2",
+    "z in m/s": "z in m/s^2",
+    "distanceTo": "Distanz zum Startpunkt",
+    "course": "Richtung"
+  }
+
   for (var i = 0; i < att_length; i++){
-    //check all attributes and replace them
-    if(loc_attributes[i].includes("CPU")){
-      loc_attributes[i] = "Zeit in Minuten";
+    for (let key in replacements){
+      if (loc_attributes[i].includes(key)){
+        loc_attributes[i] = replacements[key];
+      }
     }
-    else if (loc_attributes[i].includes("hh")){
-      loc_attributes[i] = "Uhrzeit";
-    }
-    else if (loc_attributes[i].includes("temp")){
-      loc_attributes[i] = "Temperatur in °C";
-    }
-    else if (loc_attributes[i].includes("alt")){
-      loc_attributes[i] = "Höhe in m";
-    }
-    else if (loc_attributes[i].includes("pres")){
-      loc_attributes[i] = "Luftdruck in hPa";
-    }
-    else if (loc_attributes[i].includes("hum")){
-      loc_attributes[i] = "Luftfeuchtigkeit in %";
-    }
-    else if (loc_attributes[i].includes("lat")){
-      loc_attributes[i] = "Breitengrad";
-    }
-    else if (loc_attributes[i].includes("lng")){
-      loc_attributes[i] = "Längengrad";
-    }
-    else if (loc_attributes[i].includes("speed")){
-      loc_attributes[i] = "Geschwindigkeit";
-    }
-    else if (loc_attributes[i].includes("batteryVoltage")){
-      loc_attributes[i] = "Batteriespannung in Volt";
-    }
-    else if (loc_attributes[i].includes("satellites")){
-      loc_attributes[i] = "Anzahl der Satelliten";
-    }
-    else if (loc_attributes[i].includes("date")){
-      loc_attributes[i] = "Datum";
-    }
-    
     var opt_x = document.createElement('option');
     opt_x.value = loc_attributes[i]; // Den einzelnen Options werden Attribute zugewiesen
     opt_x.innerHTML = loc_attributes[i]; //dem Nutzer werden einzelne Attributsnamen angezeigt
@@ -85,6 +74,7 @@ function createSelect(loc_attributes){
     opt_y.innerHTML = loc_attributes[i]; // dem Nutzer werden einzelne Attributsnamen angezeigt
     select_y.appendChild(opt_y);
   }
+
   return (loc_attributes);
 }
 
@@ -111,11 +101,12 @@ myForm.addEventListener("submit", function (e) {
     let text = e.target.result;
     //Check for Headlines
       //of adalogger
-    if (text.includes("Name: AdaloggerV1, HW Version: 1.0, SW Version: 1.4, reduced Resolution by Tim Schumann")){
-      text = text.replace(/Name: AdaloggerV1, HW Version: 1\.0, SW Version: 1\.4, reduced Resolution by Tim Schumann/, '');
+    if (text.includes("Adalogger")){
+      //text = text.replace(/Name: AdaloggerV1, HW Version: 1\.0, SW Version: 1\.4, reduced Resolution by Tim Schumann/, '');
       var lines = text.split('\n');
       lines.splice(0,1);
       text = lines.join('\n');
+      console.log(text);
       data = csvToArray(text); //eingelesene Daten
     }
     else {

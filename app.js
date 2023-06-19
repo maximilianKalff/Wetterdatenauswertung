@@ -55,7 +55,8 @@ function createSelect(loc_attributes){
     "y in m/s": "y in m/s^2",
     "z in m/s": "z in m/s^2",
     "distanceTo": "Distanz zum Startpunkt",
-    "course": "Richtung"
+    "course": "Richtung",
+    "ozone": "Ozon in ppb",
   }
 
   for (var i = 0; i < att_length; i++){

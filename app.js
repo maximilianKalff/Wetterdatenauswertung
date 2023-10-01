@@ -57,6 +57,7 @@ function createSelect(loc_attributes){
     "distanceTo": "Distanz zum Startpunkt",
     "course": "Richtung",
     "ozone": "Ozon in ppb",
+    "radiation in cpm": "Strahlung in ClicksPerMinute",
   }
 
   for (var i = 0; i < att_length; i++){
